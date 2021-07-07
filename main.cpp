@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include <string>
 #include <vector>
 using namespace std;
@@ -7,39 +8,35 @@ int main(int argc, char *argv[])
 {
     string inputline;
     string word = "";
-    string path = "C:\\Users\\Erik";
+    string path = "/home/erik";
+
     while (true)
     {
-        printf("bish#%s>",path);
+        inputline = "";
+        printf("bish#%s>", path.c_str());
         getline(cin, inputline);
-        vector<string> args;
+        vector<char*> args;
 
-        for (char c : inputline)
+        char *inputcstr = new char[inputline.length() + 1];
+        strcpy(inputcstr, inputline.c_str());
+
+        char *i = strtok(inputcstr, " ");
+
+        while (i != 0)
         {
-            if (c == ' ')
-            {
-
-                args.push_back(word);
-
-                word = "";
-            }
-            else
-            {
-                word = word + c;
-            }
+            args.push_back(i);
+            i = strtok(NULL, " ");
         }
 
-        args.push_back(word);
-
-        /*for (string x: args) {
+        for (string x: args) {
             std::cout << x << std::endl;
-        }*/
-        cout << args[0] << endl;
-        
-        if (args[0] == "cd") {
+        }
+        //cout << args[0] << endl;
+
+        if (args[0] == "cd")
+        {
 
             path = args[1];
-            
         }
 
         args.clear();
