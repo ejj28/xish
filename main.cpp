@@ -72,6 +72,13 @@ int main(int argc, char *argv[])
                     }
                 }
             }
+            else if (args.at(0) == "ls")
+            {
+                for (filesystem::directory_entry d : filesystem::directory_iterator(filesystem::current_path()))
+                {
+                    cout << d.path().string() << '\n';
+                }
+            }
         }
 
         args.clear();
