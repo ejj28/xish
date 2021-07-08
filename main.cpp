@@ -31,29 +31,47 @@ int main(int argc, char *argv[])
         /*for (string x: args) {
             std::cout << x << std::endl;
         }*/
-        
+
         //cout << args[0] << endl;
         /*for (int z = 0; z < args.at(0).size(); z++) {
 
         }*/
-        if (args.at(0) == "cd")
+        if (args.size() != 0)
         {
-            if (args.size() != 2) {
-                cout << "Error: Incorrect number of arguments." << endl << "Usage: cd <directory>" << endl;
-            } else {
-                filesystem::path inputtedPath(args[1]);
-                if (!exists(inputtedPath)) {
-                    cout << "Error: Path does not exist" << endl;
-                } else {
-                    if (!is_directory(inputtedPath)) {
-                        cout << "Error: Not a directory" << endl;
-                    } else {
-                        current_path(inputtedPath);
+            if (args.at(0) == "cd")
+            {
+                if (args.size() != 2)
+                {
+                    cout << "Error: Incorrect number of arguments." << endl
+                         << "Usage: cd <directory>" << endl;
+                }
+                else
+                {
+                    if (args.at(1) == "..")
+                    {
+                        filesystem::current_path(filesystem::current_path().parent_path());
+                    }
+                    else
+                    {
+                        filesystem::path inputtedPath(args.at(1));
+                        if (!exists(inputtedPath))
+                        {
+                            cout << "Error: Path does not exist" << endl;
+                        }
+                        else
+                        {
+                            if (!is_directory(inputtedPath))
+                            {
+                                cout << "Error: Not a directory" << endl;
+                            }
+                            else
+                            {
+                                current_path(inputtedPath);
+                            }
+                        }
                     }
                 }
-                
             }
-            
         }
 
         args.clear();
