@@ -1,2 +1,2 @@
-# bish
- 🅱️ish is a crappy shell
+# xish
+ xish is a crappy shell

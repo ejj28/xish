@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     while (true)
     {
         inputline = "";
-        printf("bish#%s>", filesystem::current_path().string().c_str());
+        printf("xish#%s>", filesystem::current_path().string().c_str());
         getline(cin, inputline);
         vector<string> args;
 
